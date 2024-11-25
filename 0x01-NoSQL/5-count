@@ -1,0 +1,2 @@
+// FInd the number of documents in a Collection
+db.school.count();
