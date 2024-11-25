@@ -1,0 +1,2 @@
+// to create or switch to a certain database
+use my_db;
