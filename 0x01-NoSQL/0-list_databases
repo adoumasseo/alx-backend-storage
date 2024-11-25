@@ -1,0 +1,2 @@
+// A scrip to list all databases of a mongodb server
+show dbs;
