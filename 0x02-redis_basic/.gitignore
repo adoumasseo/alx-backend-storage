@@ -1,2 +1,5 @@
 *pycache*
 *main.py*
+.venv
+.mypy_cache
+.ropeproject
