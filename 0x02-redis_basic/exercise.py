@@ -2,8 +2,17 @@
 """First task of using Redis"""
 import uuid
 import redis
+from functools import wraps
 from typing import Union, Callable, Any
 
+
+def count_calls(method: Callable) -> Callable:
+    @wraps(method)
+    def wrapper(self, *args, **kwargs) -> Any:
+        if isinstance(self._redis, redis.Redis):
+            self._redis.incr(method.__qualname__)
+        return method(self, *args, **kwargs)
+    return wrapper
 
 class Cache:
     '''A class for implementing random caching'''
@@ -13,6 +22,7 @@ class Cache:
         self._redis = redis.Redis()
         self._redis.flushdb()
 
+    @count_calls
     def store(self, data: Union[str, bytes, int, float]) -> str:
         '''Store data in redis with a uuid key'''
         key = str(uuid.uuid4())
