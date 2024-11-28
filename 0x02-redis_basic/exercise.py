@@ -59,6 +59,7 @@ def replay(fn: Callable) -> None:
             fxn_output,
         ))
 
+
 class Cache:
     '''A class for implementing random caching'''
 
